@@ -1,8 +1,9 @@
 Проект shop-assistant бот для магазина с доставкой.
 
 Запуск проекта
-npm i
-npx prisma migrate dev
+1. env (заполнить переменные BOT_TOKEN, PORT, DATABASE_URL) 
+2. npm i
+3. npx prisma migrate dev
 
 Меню клавиатуры по умолчани.
 
