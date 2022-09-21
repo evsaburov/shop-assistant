@@ -1,0 +1,74 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Chat {
+  id               Int      @id @default(autoincrement())
+  telegram_chat_id Int
+  first_name       String
+  username         String
+  is_bot           Boolean
+  created_at       DateTime @default(now())
+  updated_at       DateTime @updatedAt
+  Setting          Setting?
+
+  @@map("chats")
+}
+
+model Setting {
+  id         Int      @id @default(autoincrement())
+  chat       Chat     @relation(fields: [chatId], references: [id])
+  chatId     Int      @unique
+  shop       Shop     @relation(fields: [shopId], references: [id])
+  shopId     Int
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("settings")
+}
+
+model Card {
+  id         Int      @id @default(autoincrement())
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  first_name String
+  last_name  String
+  sur_name   String
+  birthdate  DateTime
+  email      String
+  phone      String
+
+  @@map("cards")
+}
+
+model City {
+  id         Int      @id @default(autoincrement())
+  name       String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  Shop       Shop[]
+
+  @@map("cities")
+}
+
+model Shop {
+  id         Int       @id @default(autoincrement())
+  name       String
+  city       City      @relation(fields: [cityId], references: [id])
+  cityId     Int
+  street     String
+  home       String
+  created_at DateTime  @default(now())
+  updated_at DateTime  @updatedAt
+  Setting    Setting[]
+
+  @@map("shops")
+}
