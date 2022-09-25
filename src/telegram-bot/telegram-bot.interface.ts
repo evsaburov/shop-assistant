@@ -10,7 +10,8 @@ interface MySessionScene extends SceneSessionData {
 }
 
 interface MySession extends Scenes.SceneSession<MySessionScene> {
-	delivery: string;
+	city: string;
+	shop: string;
 }
 
 export interface MyContext extends Context {

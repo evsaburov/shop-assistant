@@ -19,3 +19,5 @@ export function card(ctx: MyContext): void {
 export function test(ctx: MyContext): void {
 	ctx.sendMessage('test');
 }
+
+// ctx.sendMessage(`Адрес доставки установлен ${ctx.session.city} ${ctx.session.shop}`);
