@@ -4,7 +4,7 @@
 
 - env (создать файл .env, указать переменные BOT_TOKEN, PORT, DATABASE_URL)
 - `npm i` установим основные пакеты
-- `npx prisma migrate dev` сделаем миграции
+- `npx prisma deploy` сделаем миграции
 - `npx prisma db seed` добавим необходимые начальные данные
 
 ## Меню клавиатуры по умолчанию.
