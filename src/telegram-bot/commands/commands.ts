@@ -1,6 +1,15 @@
 import { MyContext } from '../telegram-bot.interface';
+import { hello, needDelivery, currentDelivery } from '../template/messages';
 
-export function start(this: any, ctx: MyContext): void {
+export function start(ctx: MyContext): void {
+	// const currentUser =
+	// ctx.reply(hello(currentUser));
+	// if (hasCityOrShop(ctx)) {
+	// 	ctx.reply(needDelivery());
+	// 	ctx.scene.enter('city');
+	// } else {
+	// 	ctx.reply(currentDelivery(ctx.session.city, ctx.session.shop));
+	// }
 	ctx.sendMessage('start');
 }
 
@@ -20,4 +29,6 @@ export function test(ctx: MyContext): void {
 	ctx.sendMessage('test');
 }
 
-// ctx.sendMessage(`Адрес доставки установлен ${ctx.session.city} ${ctx.session.shop}`);
+function hasCityOrShop(ctx: MyContext): boolean {
+	return !ctx.session.city && !ctx.session.shop;
+}
