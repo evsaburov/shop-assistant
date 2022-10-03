@@ -3,7 +3,3 @@ export enum KeyboardCommands {
 	settings = 'Настройки',
 	card = 'Карта лояльности',
 }
-
-export enum Text {
-	hello = 'Привет,Добро пожаловать в Магазин',
-}

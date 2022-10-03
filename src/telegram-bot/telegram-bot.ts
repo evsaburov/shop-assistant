@@ -3,7 +3,7 @@ import { IBotTelegram, MyContext } from './telegram-bot.interface';
 import { Telegraf, Scenes, Context } from 'telegraf';
 import { ILogger } from '../logger/logger.interface';
 import { help, start, settings, card } from './commands/commands';
-import { cityScene, shopScene } from './scenes/delivery-scene';
+import { cityScene, shopScene } from './scenes/scenes';
 import LocalSession from 'telegraf-session-local';
 import { IConfigService } from './config/config.service.interface';
 import { userController } from './middleware/current-user';

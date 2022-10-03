@@ -24,7 +24,7 @@ const shops = [
 	{ id: 9, name: 'Магазин 9', cityId: 4, street: 'ул. Салютная', home: '7' },
 	{ id: 10, name: 'Магазин 10', cityId: 4, street: 'ул. Мамина', home: '3' },
 	{ id: 11, name: 'Магазин 11', cityId: 5, street: 'пл. Революции', home: '4' },
-	{ id: 12, name: 'Магазин 12', cityId: 5, street: 'ул. Елькина', home: '6' },
+	{ id: 12, name: 'Магазин 12', cityId: 5, street: 'ул. Елкина', home: '6' },
 	{ id: 13, name: 'Магазин 13', cityId: 5, street: 'ул. Воровского', home: '7' },
 	{ id: 14, name: 'Магазин 14', cityId: 6, street: 'ул. Блюхера', home: '9' },
 	{ id: 15, name: 'Магазин 15', cityId: 7, street: 'ул. Дарвина', home: '3' },
@@ -39,7 +39,7 @@ async function main(): Promise<void> {
 		const cityUpsert = await prisma.city.upsert({
 			where: { id: city.id },
 			update: { name: city.name },
-			create: { id: city.id, name: city.name },
+			create: { name: city.name },
 		});
 		console.log(`Upsert city with id: ${cityUpsert.id}`);
 	}
@@ -47,7 +47,7 @@ async function main(): Promise<void> {
 		const shopUpsert = await prisma.shop.upsert({
 			where: { id: shop.id },
 			update: { name: shop.name },
-			create: { name: shop.name, cityId: shop.cityId, street: shop.street, home: shop.home },
+			create: { name: shop.name, street: shop.street, home: shop.home },
 		});
 		console.log(`Upsert shop with id: ${shopUpsert.id}`);
 	}

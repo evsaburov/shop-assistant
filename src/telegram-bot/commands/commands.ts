@@ -1,5 +1,5 @@
 import { MyContext } from '../telegram-bot.interface';
-import { hello, needDelivery, currentDelivery } from '../template/messages';
+import { hello, needDelivery, currentDelivery } from '../view/commands/commands';
 
 export function start(ctx: MyContext): void {
 	// const currentUser =
