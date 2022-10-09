@@ -1,9 +1,8 @@
 import { Scenes, Markup } from 'telegraf';
 import { MyContext } from '../../telegram-bot.interface';
-import { getShopsByCity } from '../../database/commands';
+import { getShopsByCity } from '../../model/models';
 import { isShopSelect, selectShop, shopNotFound, shopsList } from '../../view/scenes/delivery/shop';
-
-const removeKeyboard = Markup.removeKeyboard();
+import { removeKeyboard, exitKeyboards, keyboardShop } from '../../keyboards/keyboards';
 
 export const shopScene = new Scenes.BaseScene<MyContext>('shop');
 
@@ -28,14 +27,9 @@ shopScene.on('text', async (ctx) => {
 	if (isShopExist) {
 		ctx.session.shop = respondUser;
 		ctx.sendMessage(isShopSelect(respondUser), removeKeyboard);
-		return ctx.scene.leave();
+		ctx.scene.leave();
 	} else {
-		ctx.sendMessage(
-			shopNotFound(),
-			Markup.keyboard([...shopList])
-				.resize()
-				.oneTime(),
-		);
+		keyboardShop([...shopList]);
 	}
 });
 

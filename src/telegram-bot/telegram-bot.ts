@@ -1,12 +1,14 @@
 import 'dotenv/config';
-import { IBotTelegram, MyContext } from './telegram-bot.interface';
 import { Telegraf, Scenes, Context } from 'telegraf';
+import { IBotTelegram, MyContext } from './telegram-bot.interface';
 import { ILogger } from '../logger/logger.interface';
-import { help, start, settings, card } from './commands/commands';
-import { cityScene, shopScene } from './scenes/scenes';
 import LocalSession from 'telegraf-session-local';
+import { help, start, settings, card, setDelivery, phone, exit } from './controller/commands';
+import { actionSetDeliveryYes, actionSetDeliveryNo } from './controller/action';
+import { cityScene, shopScene, nameScene, phoneScene, emailScene } from './scene/scenes';
 import { IConfigService } from './config/config.service.interface';
-import { userController } from './middleware/current-user';
+import { userController } from './middleware/userController';
+import { Stage, WizardScene } from 'telegraf/typings/scenes';
 
 export class BotTelegram implements IBotTelegram {
 	private bot: Telegraf<MyContext>;
@@ -14,31 +16,47 @@ export class BotTelegram implements IBotTelegram {
 		this.config = config;
 		this.logger = logger;
 		this.bot = new Telegraf<MyContext>(config.get('BOT_TOKEN'));
+		this.sessionMiddleware();
 		this.stageMiddleware();
 		this.userMiddleware();
 		this.commands();
+		this.actions();
 	}
 
 	private userMiddleware(): void {
-		this.bot.use((ctx, next) => {
-			userController(ctx);
+		this.bot.use(async (ctx, next) => {
+			await userController(ctx);
 			next();
 		});
 	}
 
-	private stageMiddleware(): void {
+	private sessionMiddleware(): void {
 		this.bot.use(new LocalSession({ database: 'session.json' }).middleware());
-		const stage = new Scenes.Stage<MyContext>([cityScene, shopScene]);
-		this.bot.use(stage.middleware());
+	}
+
+	private stageMiddleware(): void {
+		const stageScene = new Scenes.Stage<MyContext>([
+			cityScene,
+			shopScene,
+			nameScene,
+			phoneScene,
+			emailScene,
+		]);
+		stageScene.hears('Выход', exit);
+		this.bot.use(stageScene.middleware());
 	}
 
 	private commands(): void {
 		this.bot.command('help', help);
 		this.bot.command('settings', settings);
 		this.bot.command('card', card);
-		this.bot.command('start', (ctx) => {
-			start(ctx);
-		});
+		this.bot.command('setDelivery', setDelivery);
+		this.bot.command('start', start);
+	}
+
+	private actions(): void {
+		this.bot.action('setDeliveryYes', actionSetDeliveryYes);
+		this.bot.action('setDeliveryNo', actionSetDeliveryNo);
 	}
 
 	public start(): void {

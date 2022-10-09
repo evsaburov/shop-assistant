@@ -14,6 +14,6 @@ export function selectShop(): string {
 
 export function shopsList(shops: Shop[]): string[] {
 	return shops.map((el) => {
-		return `${el.name} - ${el.street} ${el.home}`;
+		return `${el.name} - ${el.street} ${el.build}`;
 	});
 }

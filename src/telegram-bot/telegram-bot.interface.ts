@@ -10,6 +10,9 @@ interface MySessionScene extends SceneSessionData {
 }
 
 interface MySession extends Scenes.SceneSession<MySessionScene> {
+	user: number;
+	name: string;
+	chat: number;
 	city: string;
 	shop: string;
 }

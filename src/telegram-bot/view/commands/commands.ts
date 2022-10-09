@@ -1,5 +1,5 @@
 export const hello = (user: string): string => {
-	return `Привет, ${user}. Это магазин`;
+	return `Привет, ${user}.\nДобро пожаловать в магазин обуви Sketchers`;
 };
 
 export const needDelivery = (): string => {
@@ -7,5 +7,9 @@ export const needDelivery = (): string => {
 };
 
 export const currentDelivery = (city: String, shop: string): string => {
-	return `Привет. Твой адрес доставки${city} ${shop}`;
+	return `Адрес доставки: ${city} ${shop}`;
+};
+
+export const cardHello = (): string => {
+	return `Карта лояльности позволяет получать скидки и участвовать в акциях, заполните указанные данные.`;
 };
