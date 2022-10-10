@@ -1,8 +1,9 @@
 import { Markup, Scenes } from 'telegraf';
 import { MyContext } from '../../telegram-bot.interface';
 import { removeKeyboard, exitKeyboards } from '../../keyboards/keyboards';
+import { Scene } from '../types';
 
-export const phoneScene = new Scenes.BaseScene<MyContext>('phone');
+export const phoneScene = new Scenes.BaseScene<MyContext>(Scene.PHONE);
 
 phoneScene.enter(async (ctx) => {
 	ctx.reply('Укажите номер телефона в формате +7XXXXXXXXXX', exitKeyboards);

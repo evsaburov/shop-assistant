@@ -1,8 +1,9 @@
 import { Scenes } from 'telegraf';
 import { MyContext } from '../../telegram-bot.interface';
 import { removeKeyboard, exitKeyboards } from '../../keyboards/keyboards';
+import { Scene } from '../types';
 
-export const nameScene = new Scenes.BaseScene<MyContext>('name');
+export const nameScene = new Scenes.BaseScene<MyContext>(Scene.NAME);
 
 nameScene.enter(async (ctx) => {
 	ctx.sendMessage('Укажите Ваше ФИО', exitKeyboards);
