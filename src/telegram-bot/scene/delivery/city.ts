@@ -1,5 +1,5 @@
 import { Scenes } from 'telegraf';
-import { MyContext } from '../../telegram-bot.interface';
+import { MyContext } from '../../telegram-bot-interface';
 import { getCities } from '../../model/models';
 import { cityNotFound, isCitySet, selectCity } from '../../view/scenes/delivery/city';
 import { keyboardCity, removeKeyboard } from '../../keyboards/keyboards';

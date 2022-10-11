@@ -1,4 +1,4 @@
-import { MyContext } from '../telegram-bot.interface';
+import { MyContext } from '../telegram-bot-interface';
 import { hello, currentDelivery, cardHello } from '../view/commands/commands';
 
 export function start(ctx: MyContext): void {

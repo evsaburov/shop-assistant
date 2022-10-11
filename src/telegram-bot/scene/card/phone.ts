@@ -1,5 +1,5 @@
 import { Markup, Scenes } from 'telegraf';
-import { MyContext } from '../../telegram-bot.interface';
+import { MyContext } from '../../telegram-bot-interface';
 import { removeKeyboard, exitKeyboards } from '../../keyboards/keyboards';
 import { Scene } from '../types';
 

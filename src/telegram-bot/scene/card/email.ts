@@ -1,6 +1,6 @@
 import { Scenes } from 'telegraf';
 import { removeKeyboard } from '../../keyboards/keyboards';
-import { MyContext } from '../../telegram-bot.interface';
+import { MyContext } from '../../telegram-bot-interface';
 import { Scene } from '../types';
 
 export const emailScene = new Scenes.BaseScene<MyContext>(Scene.EMAIL);

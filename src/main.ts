@@ -1,6 +1,6 @@
 import { App } from './app';
 import { LoggerService } from './logger/logger.service';
-import { ConfigService } from './telegram-bot/config/config.service';
+import { ConfigService } from './config/config.service';
 import { BotTelegram } from './telegram-bot/telegram-bot';
 
 function bootstrap(): void {

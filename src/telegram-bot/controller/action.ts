@@ -1,6 +1,4 @@
-import { callback } from 'telegraf/typings/button';
-import { MyContext } from '../telegram-bot.interface';
-import { hello, currentDelivery } from '../view/commands/commands';
+import { MyContext } from '../telegram-bot-interface';
 
 export const actionSetDeliveryYes = (ctx: MyContext): void => {
 	ctx.answerCbQuery();

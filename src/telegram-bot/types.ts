@@ -3,3 +3,8 @@ export enum KeyboardCommands {
 	settings = 'Настройки',
 	card = 'Карта лояльности',
 }
+
+export enum Status {
+	BLOCKED = 'BLOCKED',
+	ACTIVE = 'ACTIVE',
+}
