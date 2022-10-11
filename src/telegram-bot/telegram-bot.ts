@@ -1,14 +1,13 @@
 import 'dotenv/config';
-import { Telegraf, Scenes, Context } from 'telegraf';
+import { Telegraf, Scenes } from 'telegraf';
 import { IBotTelegram, MyContext } from './telegram-bot-interface';
 import { ILogger } from '../logger/logger.interface';
 import LocalSession from 'telegraf-session-local';
-import { help, start, settings, card, setDelivery, phone, exit } from './controller/commands';
+import { help, start, settings, card, setDelivery, exit } from './controller/commands';
 import { actionSetDeliveryYes, actionSetDeliveryNo } from './controller/action';
 import { cityScene, shopScene, nameScene, phoneScene, emailScene } from './scene/scenes';
 import { IConfigService } from '../config/config.service.interface';
 import { userController } from './middleware/userController';
-import { Stage, WizardScene } from 'telegraf/typings/scenes';
 
 export class BotTelegram implements IBotTelegram {
 	private bot: Telegraf<MyContext>;
