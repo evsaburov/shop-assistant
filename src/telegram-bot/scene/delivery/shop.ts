@@ -2,7 +2,7 @@ import { Scenes, Markup } from 'telegraf';
 import { MyContext } from '../../telegram-bot-interface';
 import { getShopsByCity } from '../../model/models';
 import { isShopSelect, selectShop, shopNotFound, shopsList } from '../../view/scenes/delivery/shop';
-import { removeKeyboard, exitKeyboards, keyboardShop } from '../../keyboards/keyboards';
+import { removeKeyboard, exitKeyboard, shopKeyboard } from '../../keyboards/keyboards';
 import { Scene } from '../types';
 
 export const shopScene = new Scenes.BaseScene<MyContext>(Scene.SHOP);
@@ -30,7 +30,7 @@ shopScene.on('text', async (ctx) => {
 		ctx.sendMessage(isShopSelect(respondUser), removeKeyboard);
 		ctx.scene.leave();
 	} else {
-		keyboardShop([...shopList]);
+		shopKeyboard([...shopList]);
 	}
 });
 

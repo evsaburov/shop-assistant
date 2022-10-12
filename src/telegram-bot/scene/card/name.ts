@@ -1,12 +1,12 @@
 import { Scenes } from 'telegraf';
 import { MyContext } from '../../telegram-bot-interface';
-import { removeKeyboard, exitKeyboards } from '../../keyboards/keyboards';
+import { removeKeyboard, exitKeyboard } from '../../keyboards/keyboards';
 import { Scene } from '../types';
 
 export const nameScene = new Scenes.BaseScene<MyContext>(Scene.NAME);
 
 nameScene.enter(async (ctx) => {
-	ctx.sendMessage('Укажите Ваше ФИО', exitKeyboards);
+	ctx.sendMessage('Укажите Ваше ФИО', exitKeyboard);
 });
 
 nameScene.on('text', async (ctx) => {
@@ -16,6 +16,6 @@ nameScene.on('text', async (ctx) => {
 		ctx.sendMessage('ФИО установлено', removeKeyboard);
 		ctx.scene.enter('phone');
 	} else {
-		ctx.sendMessage('Некорректно указано ФИО, попробуйте еще раз...', exitKeyboards);
+		ctx.sendMessage('Некорректно указано ФИО, попробуйте еще раз...', exitKeyboard);
 	}
 });

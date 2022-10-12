@@ -4,7 +4,12 @@ import { IBotTelegram, MyContext } from './telegram-bot-interface';
 import { ILogger } from '../logger/logger.interface';
 import LocalSession from 'telegraf-session-local';
 import { help, start, settings, card, setDelivery, exit } from './controller/commands';
-import { actionSetDeliveryYes, actionSetDeliveryNo } from './controller/action';
+import {
+	actionSetDeliveryYes,
+	actionSetDeliveryNo,
+	actionSetCardNo,
+	actionSetCardYes,
+} from './controller/action';
 import { cityScene, shopScene, nameScene, phoneScene, emailScene } from './scene/scenes';
 import { IConfigService } from '../config/config.service.interface';
 import { userController } from './middleware/userController';
@@ -56,6 +61,8 @@ export class BotTelegram implements IBotTelegram {
 	private actions(): void {
 		this.bot.action('setDeliveryYes', actionSetDeliveryYes);
 		this.bot.action('setDeliveryNo', actionSetDeliveryNo);
+		this.bot.action('setCardYes', actionSetCardYes);
+		this.bot.action('setCardNo', actionSetCardNo);
 	}
 
 	public start(): void {

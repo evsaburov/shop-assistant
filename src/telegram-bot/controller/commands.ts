@@ -1,13 +1,11 @@
+import { mainKeyboard, setCardKeyboard, setDeliveryKeyboard } from '../keyboards/keyboards';
+import { Scene } from '../scene/types';
 import { MyContext } from '../telegram-bot-interface';
-import { hello, currentDelivery, cardHello } from '../view/commands/commands';
+import { hello, cardHello } from '../view/commands/commands';
 
 export function start(ctx: MyContext): void {
-	ctx.reply(hello(ctx.session.name));
-	if (!ctx.session.city && !ctx.session.shop) {
-		ctx.scene.enter('city');
-	} else {
-		ctx.reply(currentDelivery(ctx.session.city, ctx.session.shop));
-	}
+	ctx.reply(hello(ctx.session.name), mainKeyboard);
+	if (!ctx.session.city && !ctx.session.shop) ctx.scene.enter(Scene.CITY);
 }
 
 export function help(ctx: MyContext): void {
@@ -19,8 +17,7 @@ export function settings(ctx: MyContext): void {
 }
 
 export function card(ctx: MyContext): void {
-	ctx.sendMessage(cardHello());
-	ctx.scene.enter('name');
+	ctx.sendMessage(cardHello(), setCardKeyboard);
 }
 
 export function exit(ctx: MyContext): void {
@@ -29,16 +26,7 @@ export function exit(ctx: MyContext): void {
 }
 
 export function setDelivery(ctx: MyContext): void {
-	ctx.sendMessage('Выбрать другой пункт выдачи?', {
-		reply_markup: {
-			inline_keyboard: [
-				[
-					{ text: 'Да', callback_data: 'setDeliveryYes' },
-					{ text: 'Нет', callback_data: 'setDeliveryNo' },
-				],
-			],
-		},
-	});
+	ctx.sendMessage('Выбрать другой пункт выдачи?', setDeliveryKeyboard);
 }
 
 export function phone(ctx: MyContext): void {
