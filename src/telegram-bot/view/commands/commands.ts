@@ -13,3 +13,13 @@ export const currentDelivery = (city: String, shop: string): string => {
 export const cardHello = (): string => {
 	return `Карта лояльности позволяет получать скидки и участвовать в акциях, заполните указанные данные.`;
 };
+
+export const helpCommand = (): string => {
+	return `Доступные команды:
+/start - Запуск бота.
+/catalog - Каталог магазина.
+/delivery - Адрес доставки.
+/card - Карта лояльности.
+/help - Помощь.
+/exit - Выход.`;
+};

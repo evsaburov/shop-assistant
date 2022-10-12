@@ -3,7 +3,7 @@ import { Telegraf, Scenes } from 'telegraf';
 import { IBotTelegram, MyContext } from './telegram-bot-interface';
 import { ILogger } from '../logger/logger.interface';
 import LocalSession from 'telegraf-session-local';
-import { help, start, settings, card, setDelivery, exit } from './controller/commands';
+import { help, start, settings, card, delivery, exit, catalog } from './controller/commands';
 import {
 	actionSetDeliveryYes,
 	actionSetDeliveryNo,
@@ -13,6 +13,7 @@ import {
 import { cityScene, shopScene, nameScene, phoneScene, emailScene } from './scene/scenes';
 import { IConfigService } from '../config/config.service.interface';
 import { userController } from './middleware/userController';
+import { Actions, Commands, Hears } from './types';
 
 export class BotTelegram implements IBotTelegram {
 	private bot: Telegraf<MyContext>;
@@ -24,6 +25,7 @@ export class BotTelegram implements IBotTelegram {
 		this.stageMiddleware();
 		this.userMiddleware();
 		this.commands();
+		this.hears();
 		this.actions();
 	}
 
@@ -51,18 +53,25 @@ export class BotTelegram implements IBotTelegram {
 	}
 
 	private commands(): void {
-		this.bot.command('help', help);
-		this.bot.command('settings', settings);
-		this.bot.command('card', card);
-		this.bot.command('setDelivery', setDelivery);
-		this.bot.command('start', start);
+		this.bot.command(Commands.CARD, card);
+		this.bot.command(Commands.DELIVERY, delivery);
+		this.bot.command(Commands.START, start);
+		this.bot.command(Commands.CATALOG, catalog);
+		this.bot.command(Commands.HELP, help);
+		this.bot.command(Commands.EXIT, exit);
+	}
+
+	private hears(): void {
+		this.bot.hears(Hears.HELP, help);
+		this.bot.hears(Hears.CARD, card);
+		this.bot.hears(Hears.CATALOG, catalog);
 	}
 
 	private actions(): void {
-		this.bot.action('setDeliveryYes', actionSetDeliveryYes);
-		this.bot.action('setDeliveryNo', actionSetDeliveryNo);
-		this.bot.action('setCardYes', actionSetCardYes);
-		this.bot.action('setCardNo', actionSetCardNo);
+		this.bot.action(Actions.DELIVERY_YES, actionSetDeliveryYes);
+		this.bot.action(Actions.DELIVERY_NO, actionSetDeliveryNo);
+		this.bot.action(Actions.CARD_YES, actionSetCardYes);
+		this.bot.action(Actions.CARD_NO, actionSetCardNo);
 	}
 
 	public start(): void {

@@ -2,11 +2,8 @@ import { Markup } from 'telegraf';
 import { ReplyKeyboardMarkup } from 'telegraf/typings/core/types/typegram';
 import { Button, CallbackAction } from './types';
 
-export const mainKeyboard = Markup.keyboard([
-	[Button.CATALOG, Button.CARD, Button.HELP, Button.SETTINGS],
-])
-	.resize()
-	.oneTime();
+export const mainKeyboard = Markup.keyboard([[Button.CATALOG, Button.CARD, Button.HELP]]).resize();
+// .oneTime();
 
 export const cityKeyboard = (arrayCity: string[]): Markup.Markup<ReplyKeyboardMarkup> => {
 	return Markup.keyboard(arrayCity).resize().oneTime();
