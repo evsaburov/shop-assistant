@@ -29,7 +29,7 @@ CREATE TABLE "Telegram" (
 -- CreateTable
 CREATE TABLE "Card" (
     "id" SERIAL NOT NULL,
-    "fio" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "phone" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,

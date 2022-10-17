@@ -16,6 +16,7 @@ export enum Commands {
 	DELIVERY = 'delivery',
 	START = 'start',
 	CARD = 'card',
+	CART = 'cart',
 	EXIT = 'exit',
 }
 
@@ -23,9 +24,11 @@ export enum Hears {
 	HELP = 'Помощь',
 	SETTINGS = 'Настройки',
 	CATALOG = 'Каталог',
+	CART = 'Корзина',
 	DELIVERY = 'Доставка',
 	START = 'Старт',
 	CARD = 'Карта лояльности',
+	EXIT = 'Выход',
 }
 
 export enum Actions {
@@ -34,3 +37,14 @@ export enum Actions {
 	CARD_YES = 'setCardYes',
 	CARD_NO = 'setCardNo',
 }
+
+export type Card = {
+	name: string;
+	email: string;
+	phone: string;
+};
+
+export type Delivery = {
+	city: string;
+	shop: string;
+};

@@ -3,17 +3,19 @@ import { Telegraf, Scenes } from 'telegraf';
 import { IBotTelegram, MyContext } from './telegram-bot-interface';
 import { ILogger } from '../logger/logger.interface';
 import LocalSession from 'telegraf-session-local';
-import { help, start, card, delivery, exit, catalog } from './controller/commands';
+import { help, start, card, delivery, exit, catalog, cart } from './controller/commands';
 import {
 	actionSetDeliveryYes,
 	actionSetDeliveryNo,
 	actionSetCardNo,
 	actionSetCardYes,
+	actionAddToCart,
 } from './controller/action';
 import { cityScene, shopScene, nameScene, phoneScene, emailScene } from './scene/scenes';
 import { IConfigService } from '../config/config.service.interface';
 import { userController } from './middleware/userController';
 import { Actions, Commands, Hears } from './types';
+import { callbacksController } from './controller/callbacks';
 
 export class BotTelegram implements IBotTelegram {
 	private bot: Telegraf<MyContext>;
@@ -26,7 +28,7 @@ export class BotTelegram implements IBotTelegram {
 		this.userMiddleware();
 		this.commands();
 		this.hears();
-		this.actions();
+		this.callbacks();
 	}
 
 	private userMiddleware(): void {
@@ -48,12 +50,13 @@ export class BotTelegram implements IBotTelegram {
 			phoneScene,
 			emailScene,
 		]);
-		stageScene.hears('Выход', exit);
+		stageScene.hears(Hears.EXIT, exit);
 		this.bot.use(stageScene.middleware());
 	}
 
 	private commands(): void {
 		this.bot.command(Commands.CARD, card);
+		this.bot.command(Commands.CART, cart);
 		this.bot.command(Commands.DELIVERY, delivery);
 		this.bot.command(Commands.START, start);
 		this.bot.command(Commands.CATALOG, catalog);
@@ -64,7 +67,12 @@ export class BotTelegram implements IBotTelegram {
 	private hears(): void {
 		this.bot.hears(Hears.HELP, help);
 		this.bot.hears(Hears.CARD, card);
+		this.bot.hears(Hears.CART, cart);
 		this.bot.hears(Hears.CATALOG, catalog);
+	}
+
+	private callbacks(): void {
+		this.bot.on('callback_query', callbacksController);
 	}
 
 	private actions(): void {

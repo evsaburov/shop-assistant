@@ -1,8 +1,8 @@
 import { Scenes, Markup } from 'telegraf';
 import { MyContext } from '../../telegram-bot-interface';
-import { getShopsByCity } from '../../model/models';
-import { isShopSelect, selectShop, shopNotFound, shopsList } from '../../view/scenes/delivery/shop';
-import { removeKeyboard, exitKeyboard, shopKeyboard } from '../../keyboards/keyboards';
+import { getShopsByCity } from '../../model/shop';
+import { isShopSelect, selectShop, shopsList } from '../../view/scenes/delivery/shop';
+import { removeKeyboard, shopKeyboard } from '../../keyboards/keyboards';
 import { Scene } from '../types';
 
 export const shopScene = new Scenes.BaseScene<MyContext>(Scene.SHOP);

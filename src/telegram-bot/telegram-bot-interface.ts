@@ -13,8 +13,11 @@ interface MySession extends Scenes.SceneSession<MySessionScene> {
 	user: number;
 	name: string;
 	chat: number;
-	city: string;
 	shop: string;
+	city: string;
+	cardName: string;
+	cardEmail: string;
+	cardPhone: string;
 }
 
 export interface MyContext extends Context {

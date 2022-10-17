@@ -1,6 +1,6 @@
 import { Scenes } from 'telegraf';
 import { MyContext } from '../../telegram-bot-interface';
-import { getCities } from '../../model/models';
+import { getCities } from '../../model/city';
 import { cityNotFound, isCitySet, selectCity } from '../../view/scenes/delivery/city';
 import { cityKeyboard, removeKeyboard } from '../../keyboards/keyboards';
 import { Scene } from '../types';
@@ -17,7 +17,6 @@ cityScene.on('text', async (ctx) => {
 	const respondUser = ctx.message.text;
 	const cityExist = cities.includes(respondUser);
 	if (cityExist) {
-		ctx.session.city = respondUser;
 		ctx.sendMessage(isCitySet(respondUser), removeKeyboard);
 		ctx.scene.enter(Scene.SHOP);
 	} else {

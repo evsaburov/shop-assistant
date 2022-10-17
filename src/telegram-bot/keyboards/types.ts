@@ -1,6 +1,7 @@
 export enum Button {
 	CATALOG = 'Каталог',
 	CARD = 'Карта лояльности',
+	CART = 'Корзина',
 	SETTINGS = 'Настройки',
 	HELP = 'Помощь',
 	EXIT = 'Выход',
@@ -13,4 +14,11 @@ export enum CallbackAction {
 	DELIVERY_NO = 'setDeliveryNo',
 	CARD_YES = 'setCardYes',
 	CARD_NO = 'setCardNo',
+	ADD_TO_CART = 'addToCart',
 }
+
+export type kbInline = {
+	reply_markup: {
+		inline_keyboard: [{ text: string; callback_data: string }[]];
+	};
+};

@@ -13,9 +13,10 @@ phoneScene.on('text', (ctx) => {
 	const respondUser = ctx.message.text;
 	const regExp = /^(\+7)([\d]{10})$/;
 	if (regExp.test(respondUser)) {
+		ctx.session.cardPhone = respondUser;
 		ctx.reply('Номер телефона принят', removeKeyboard);
 		ctx.scene.enter('email');
 	} else {
-		ctx.reply('Номер телефона не соответствует формату, попробуйте еще раз', exitKeyboard);
+		ctx.reply('Номер телефона не соответствует формату, попробуйте еще раз...', exitKeyboard);
 	}
 });

@@ -19,3 +19,7 @@ export const actionSetCardNo = (ctx: MyContext): void => {
 	ctx.answerCbQuery();
 	ctx.reply('Вы отказались от скидочной карты');
 };
+export const actionAddToCart = (ctx: MyContext): void => {
+	ctx.answerCbQuery();
+	ctx.reply('Добавление товара в корзину.');
+};

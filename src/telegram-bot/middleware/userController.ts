@@ -1,11 +1,8 @@
 import { MyContext } from '../telegram-bot-interface';
-import {
-	findChatById,
-	createUser,
-	createTelegram,
-	findUserByTelegramChatId,
-} from '../model/models';
+import { findChatById, createUser } from '../model/user';
+
 import { Status } from '@prisma/client';
+import { createTelegram, findUserByTelegramChatId } from '../model/telegram';
 
 export const userController = async (ctx: MyContext): Promise<void> => {
 	if (!ctx.from) throw new Error(' ну удалось получить from из контекста');
@@ -31,7 +28,7 @@ export const userController = async (ctx: MyContext): Promise<void> => {
 
 	if (user === null) throw new Error('не удалось определить пользователя');
 	if (chat === null) throw new Error('не удалось определить чат');
-	if (user.status === Status.BLOCKED) ctx.sendMessage('Пользователь заблокированы');
+	if (user.status === Status.BLOCKED) ctx.sendMessage('Пользователь заблокирован.');
 
 	if (!ctx.session.chat) ctx.session.chat = chat.id;
 	if (!ctx.session.name) ctx.session.name = chat.first_name;

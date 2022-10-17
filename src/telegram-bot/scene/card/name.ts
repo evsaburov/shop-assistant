@@ -13,6 +13,7 @@ nameScene.on('text', async (ctx) => {
 	const regExp = /^[А-ЯЁ][а-яё]{2,}([-][А-ЯЁ][а-яё]{2,})?\s[А-ЯЁ][а-яё]{2,}\s[А-ЯЁ][а-яё]{2,}$/;
 	const respondUser = ctx.message.text;
 	if (regExp.test(respondUser)) {
+		ctx.session.cardName = respondUser;
 		ctx.sendMessage('ФИО установлено', removeKeyboard);
 		ctx.scene.enter('phone');
 	} else {

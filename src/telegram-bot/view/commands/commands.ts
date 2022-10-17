@@ -14,11 +14,16 @@ export const cardHello = (): string => {
 	return `Карта лояльности позволяет получать скидки и участвовать в акциях, заполните указанные данные.`;
 };
 
+export const cartHello = (): string => {
+	return `Содержимое Вашей корзины:`;
+};
+
 export const helpCommand = (): string => {
 	return `Доступные команды:
 /start - Запуск бота.
 /catalog - Каталог магазина.
 /delivery - Адрес доставки.
+/cart - Корзина.
 /card - Карта лояльности.
 /help - Помощь.
 /exit - Выход.`;

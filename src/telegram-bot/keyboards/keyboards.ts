@@ -1,9 +1,11 @@
 import { Markup } from 'telegraf';
-import { ReplyKeyboardMarkup } from 'telegraf/typings/core/types/typegram';
-import { Button, CallbackAction } from './types';
+import { InlineKeyboardMarkup, ReplyKeyboardMarkup } from 'telegraf/typings/core/types/typegram';
+import { inlineKeyboard } from 'telegraf/typings/markup';
+import { Button, CallbackAction, kbInline } from './types';
 
-export const mainKeyboard = Markup.keyboard([[Button.CATALOG, Button.CARD, Button.HELP]]).resize();
-// .oneTime();
+export const mainKeyboard = Markup.keyboard([
+	[Button.CATALOG, Button.CART, Button.CARD, Button.HELP],
+]).resize();
 
 export const cityKeyboard = (arrayCity: string[]): Markup.Markup<ReplyKeyboardMarkup> => {
 	return Markup.keyboard(arrayCity).resize().oneTime();
@@ -35,7 +37,20 @@ export const setCardKeyboard = {
 		],
 	},
 };
-export const mainMenuKeyboards = {};
+
+export function getPaginationKb(current: number, maxPage: number): kbInline {
+	const keys = [];
+	if (current > 1) keys.push({ text: `«1`, callback_data: 'cat-1' });
+	if (current > 2)
+		keys.push({ text: `‹${current - 1}`, callback_data: `cat-${(current - 1).toString()}` });
+	keys.push({ text: `-${current}-`, callback_data: `cat-${current.toString()}` });
+	if (current < maxPage - 1)
+		keys.push({ text: `${current + 1}›`, callback_data: `cat-${(current + 1).toString()}` });
+	if (current < maxPage)
+		keys.push({ text: `${maxPage}»`, callback_data: `cat-${maxPage.toString()}` });
+	keys.push({ text: 'Заказать', callback_data: `addToCart_${current}` });
+	return { reply_markup: { inline_keyboard: [keys] } };
+}
 
 export const exitKeyboard = Markup.keyboard([Button.EXIT]).oneTime().resize();
 export const removeKeyboard = Markup.removeKeyboard();

@@ -31,7 +31,7 @@ model Telegram {
 
 model Card {
   id         Int      @id @default(autoincrement())
-  fio        String
+  name       String
   email      String
   phone      String
   created_at DateTime @default(now()) @map("createdAt")
