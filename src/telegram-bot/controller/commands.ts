@@ -8,6 +8,7 @@ import { amountItemsInCatalog } from '../model/catalog';
 import { Scene } from '../scene/types';
 import { MyContext } from '../telegram-bot-interface';
 import { hello, cardHello, helpCommand, cartHello } from '../view/commands/commands';
+import { actionSendItemCatalog } from './action';
 
 export async function start(ctx: MyContext): Promise<void> {
 	ctx.reply(hello(ctx.session.name), mainKeyboard);
@@ -16,7 +17,8 @@ export async function start(ctx: MyContext): Promise<void> {
 
 export async function catalog(ctx: MyContext): Promise<void> {
 	const amountItems = await amountItemsInCatalog();
-	ctx.sendMessage(`картинка товара с описанием`, getPaginationKb(1, amountItems));
+	// ctx.sendMessage(`картинка товара с описанием`, getPaginationKb(1, amountItems));
+	actionSendItemCatalog(ctx, 'cat-1');
 }
 
 export function help(ctx: MyContext): void {

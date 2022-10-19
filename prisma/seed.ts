@@ -26,25 +26,25 @@ const shoes = [
 		id: 1,
 		name: "adidas Originals Men's Stan Smith",
 		link: 'https://www.amazon.com/adidas-Originals-Smith-Sneaker-White/dp/B087F1NWL9/ref=sr_1_3?c=ts&keywords=Men%27s+Fashion+Sneakers&qid=1665226576&qu=eyJxc2MiOiIxMy42MSIsInFzYSI6IjEyLjg0IiwicXNwIjoiMTEuNjcifQ%3D%3D&s=apparel&sr=1-3&ts_id=679312011',
-		images: '/shoes/01/',
+		images: 'https://m.media-amazon.com/images/I/61CCEhF7T9L._AC_UX500_.jpg',
 	},
 	{
 		id: 2,
 		name: "Skechers Men's Afterburn Memory-Foam Lace-up Sneaker",
 		link: 'https://www.amazon.com/Skechers-Afterburn-Memory-Lace-Up-Sneaker/dp/B00FZN1MS6/ref=sr_1_11?c=ts&keywords=Men%27s+Fashion+Sneakers&qid=1665226576&qu=eyJxc2MiOiIxMy42MSIsInFzYSI6IjEyLjg0IiwicXNwIjoiMTEuNjcifQ%3D%3D&s=apparel&sr=1-11&ts_id=679312011',
-		images: '/shoes/02/',
+		images: 'https://m.media-amazon.com/images/I/81sqMokxZzL._AC_UX500_.jpg',
 	},
 	{
 		id: 3,
 		name: "Vans Men's Low-Top Sneakers",
 		link: 'https://www.amazon.com/Vans-Low-Top-Sneakers-Pewter-Womens/dp/B00K5OWW7A/ref=sr_1_12?c=ts&keywords=Men%27s+Fashion+Sneakers&qid=1665226576&qu=eyJxc2MiOiIxMy42MSIsInFzYSI6IjEyLjg0IiwicXNwIjoiMTEuNjcifQ%3D%3D&s=apparel&sr=1-12&ts_id=679312011',
-		images: '/shoes/03/',
+		images: 'https://m.media-amazon.com/images/I/81iCHtXDcjL._AC_UX500_.jpg',
 	},
 	{
 		id: 4,
 		name: "adidas Originals Men's Stan Smith",
 		link: 'https://www.amazon.com/Cole-Haan-Stitchlite-Sneaker-Ironstone/dp/B07954DWP3/ref=sr_1_15?c=ts&keywords=Men%27s+Fashion+Sneakers&qid=1665226576&qu=eyJxc2MiOiIxMy42MSIsInFzYSI6IjEyLjg0IiwicXNwIjoiMTEuNjcifQ%3D%3D&s=apparel&sr=1-15&ts_id=679312011',
-		images: '/shoes/04/',
+		images: 'https://m.media-amazon.com/images/I/81RTN2ctDrL._AC_UX500_.jpg',
 	},
 ];
 

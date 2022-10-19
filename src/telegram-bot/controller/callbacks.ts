@@ -4,6 +4,7 @@ import { MyContext } from '../telegram-bot-interface';
 import { Actions } from '../types';
 import { pageNotFound } from '../view/commands/callbacks';
 import {
+	actionSendItemCatalog,
 	actionSetCardNo,
 	actionSetCardYes,
 	actionSetDeliveryNo,
@@ -13,7 +14,6 @@ import {
 export const callbacksController = async (ctx: MyContext): Promise<void> => {
 	if (ctx.callbackQuery?.data === undefined) return;
 	const data = ctx.callbackQuery.data;
-	const maxItem = await amountItemsInCatalog();
 
 	const regExpPage = /^cat-[1-9]{0,100}$/;
 	const regExpAddCart = /^addToCart_([\d]{0,100})$/;
@@ -32,8 +32,7 @@ export const callbacksController = async (ctx: MyContext): Promise<void> => {
 			actionSetDeliveryNo(ctx);
 			break;
 		case data.match(regExpPage)?.input:
-			getPageUserData(data);
-			ctx.sendMessage(`${data}`, getPaginationKb(getPageUserData(data), maxItem));
+			actionSendItemCatalog(ctx, data);
 			break;
 		case data.match(regExpAddCart)?.input:
 			ctx.answerCbQuery(data);
@@ -44,6 +43,3 @@ export const callbacksController = async (ctx: MyContext): Promise<void> => {
 			break;
 	}
 };
-function getPageUserData(data: string): number {
-	return parseInt(data.split('-')[1]);
-}
