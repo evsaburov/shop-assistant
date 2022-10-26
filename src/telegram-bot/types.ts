@@ -48,3 +48,19 @@ export type Delivery = {
 	city: string;
 	shop: string;
 };
+
+export type Cart = {
+	shipmentId: number;
+	size: number;
+	color: string;
+	price: number;
+	name: String;
+}[];
+
+export type CartItem = {
+	shipmentId: number;
+	size: number;
+	color: string;
+	price: number;
+	name: String;
+};

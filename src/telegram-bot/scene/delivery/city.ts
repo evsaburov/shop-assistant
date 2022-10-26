@@ -9,7 +9,7 @@ export const cityScene = new Scenes.BaseScene<MyContext>(Scene.CITY);
 
 cityScene.enter(async (ctx) => {
 	const cities = await getCities();
-	ctx.sendMessage(selectCity(), cityKeyboard(cities));
+	ctx.sendMessage(selectCity, cityKeyboard(cities));
 });
 
 cityScene.on('text', async (ctx) => {
@@ -18,8 +18,9 @@ cityScene.on('text', async (ctx) => {
 	const cityExist = cities.includes(respondUser);
 	if (cityExist) {
 		ctx.sendMessage(isCitySet(respondUser), removeKeyboard);
+		ctx.session.city = respondUser;
 		ctx.scene.enter(Scene.SHOP);
 	} else {
-		ctx.sendMessage(cityNotFound(), cityKeyboard(cities));
+		ctx.sendMessage(cityNotFound, cityKeyboard(cities));
 	}
 });

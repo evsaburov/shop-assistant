@@ -9,13 +9,16 @@ import {
 	actionSetDeliveryNo,
 	actionSetCardNo,
 	actionSetCardYes,
-	actionAddToCart,
 } from './controller/action';
-import { cityScene, shopScene, nameScene, phoneScene, emailScene } from './scene/scenes';
 import { IConfigService } from '../config/config.service.interface';
 import { userController } from './middleware/userController';
 import { Actions, Commands, Hears } from './types';
 import { callbacksController } from './controller/callbacks';
+import { cityScene } from './scene/delivery/city';
+import { shopScene } from './scene/delivery/shop';
+import { nameScene } from './scene/card/name';
+import { phoneScene } from './scene/card/phone';
+import { emailScene } from './scene/card/email';
 
 export class BotTelegram implements IBotTelegram {
 	private bot: Telegraf<MyContext>;

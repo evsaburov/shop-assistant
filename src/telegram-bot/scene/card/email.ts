@@ -7,9 +7,7 @@ import { Scene } from '../types';
 
 export const emailScene = new Scenes.BaseScene<MyContext>(Scene.EMAIL);
 
-emailScene.enter(async (ctx) => {
-	ctx.reply('Укажите ваш Email');
-});
+emailScene.enter(async (ctx) => ctx.reply('Укажите ваш Email'));
 
 emailScene.on('text', async (ctx) => {
 	const respondUser = ctx.message.text;

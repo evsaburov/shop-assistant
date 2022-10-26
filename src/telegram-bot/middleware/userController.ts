@@ -1,11 +1,10 @@
+import { Status } from '@prisma/client';
 import { MyContext } from '../telegram-bot-interface';
 import { findChatById, createUser } from '../model/user';
-
-import { Status } from '@prisma/client';
 import { createTelegram, findUserByTelegramChatId } from '../model/telegram';
 
 export const userController = async (ctx: MyContext): Promise<void> => {
-	if (!ctx.from) throw new Error(' ну удалось получить from из контекста');
+	if (!ctx.from) throw new Error('не удалось получить from из контекста');
 	if (!ctx.from.first_name) throw new Error('не удалось получить first_name пользователя');
 	if (!ctx.from.username) throw new Error('не удалось получить username пользователя');
 	if (!ctx.from.id) throw new Error('не удалось получить chat id пользователя');
@@ -32,4 +31,5 @@ export const userController = async (ctx: MyContext): Promise<void> => {
 
 	if (!ctx.session.chat) ctx.session.chat = chat.id;
 	if (!ctx.session.name) ctx.session.name = chat.first_name;
+	if (!ctx.session.cart) ctx.session.cart = [];
 };

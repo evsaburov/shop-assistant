@@ -7,6 +7,9 @@ export enum Button {
 	EXIT = 'Выход',
 	YES = 'Да',
 	NO = 'Нет',
+	TO_CART = 'В корзину',
+	DELETE_FROM_CART = 'Удалить',
+	PAY_FROM_CART = 'Оплатить',
 }
 
 export enum CallbackAction {
@@ -14,6 +17,7 @@ export enum CallbackAction {
 	DELIVERY_NO = 'setDeliveryNo',
 	CARD_YES = 'setCardYes',
 	CARD_NO = 'setCardNo',
+	ADD_FOR_CART = 'addForCart',
 	ADD_TO_CART = 'addToCart',
 }
 

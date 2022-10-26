@@ -6,10 +6,14 @@ export const getCatalog = async (skip: number, take: number): Promise<Catalog[]>
 	return result;
 };
 
-export const amountItemsInCatalog = async (): Promise<number> => {
+export const getMaxPage = async (): Promise<number> => {
 	return await prisma.catalog.count();
 };
 
-export const getItemCatalogByNumber = async (num: number): Promise<Catalog | null> => {
-	return await prisma.catalog.findFirst({ where: { id: num } });
+export const getItemCatalogById = async (num: number): Promise<Catalog | null> => {
+	return await prisma.catalog.findFirst({
+		where: {
+			id: num,
+		},
+	});
 };

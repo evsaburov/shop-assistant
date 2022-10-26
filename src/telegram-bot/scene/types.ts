@@ -4,4 +4,7 @@ export const enum Scene {
 	EMAIL = 'email',
 	NAME = 'name',
 	PHONE = 'phone',
+	SIZE = 'size',
+	COUNT = 'count',
+	COLOR = 'color',
 }

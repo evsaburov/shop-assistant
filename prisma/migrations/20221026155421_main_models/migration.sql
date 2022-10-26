@@ -64,7 +64,7 @@ CREATE TABLE "Catalog" (
 );
 
 -- CreateTable
-CREATE TABLE "Shipment" (
+CREATE TABLE "Store" (
     "id" SERIAL NOT NULL,
     "size" INTEGER NOT NULL,
     "color" TEXT NOT NULL,
@@ -73,7 +73,7 @@ CREATE TABLE "Shipment" (
     "description" TEXT NOT NULL,
     "catalogId" INTEGER,
 
-    CONSTRAINT "Shipment_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "Store_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
@@ -98,4 +98,4 @@ ALTER TABLE "Card" ADD CONSTRAINT "Card_userId_fkey" FOREIGN KEY ("userId") REFE
 ALTER TABLE "Shop" ADD CONSTRAINT "Shop_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Shipment" ADD CONSTRAINT "Shipment_catalogId_fkey" FOREIGN KEY ("catalogId") REFERENCES "Catalog"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE "Store" ADD CONSTRAINT "Store_catalogId_fkey" FOREIGN KEY ("catalogId") REFERENCES "Catalog"("id") ON DELETE SET NULL ON UPDATE CASCADE;

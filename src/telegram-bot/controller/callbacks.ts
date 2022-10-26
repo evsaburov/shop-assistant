@@ -1,9 +1,11 @@
-import { getPaginationKb } from '../keyboards/keyboards';
-import { amountItemsInCatalog } from '../model/catalog';
 import { MyContext } from '../telegram-bot-interface';
 import { Actions } from '../types';
-import { pageNotFound } from '../view/commands/callbacks';
+import { operationNotFound } from '../view/commands/callbacks';
 import {
+	actionAddForCart,
+	actionAddToCart,
+	actionDeleteFromCart,
+	actionPayFromCart,
 	actionSendItemCatalog,
 	actionSetCardNo,
 	actionSetCardYes,
@@ -16,7 +18,10 @@ export const callbacksController = async (ctx: MyContext): Promise<void> => {
 	const data = ctx.callbackQuery.data;
 
 	const regExpPage = /^cat-[1-9]{0,100}$/;
-	const regExpAddCart = /^addToCart_([\d]{0,100})$/;
+	const regExpForCart = /^addForCart-([\d]{0,100})$/;
+	const regExpAddToCart = /^addToCart-([\d]{0,100})$/;
+	const regExpDeleteFromCart = /^deleteFromCart-([\d]{0,100})$/;
+	const regExpPayToCart = /^payToCart([\d]{0,100})$/;
 
 	switch (data) {
 		case Actions.CARD_YES:
@@ -34,12 +39,21 @@ export const callbacksController = async (ctx: MyContext): Promise<void> => {
 		case data.match(regExpPage)?.input:
 			actionSendItemCatalog(ctx, data);
 			break;
-		case data.match(regExpAddCart)?.input:
-			ctx.answerCbQuery(data);
+		case data.match(regExpForCart)?.input:
+			actionAddForCart(ctx, data);
+			break;
+		case data.match(regExpAddToCart)?.input:
+			actionAddToCart(ctx, data);
+			break;
+		case data.match(regExpDeleteFromCart)?.input:
+			actionDeleteFromCart(ctx, data);
+			break;
+		case data.match(regExpPayToCart)?.input:
+			actionPayFromCart(ctx);
 			break;
 
 		default:
-			ctx.reply(pageNotFound);
+			ctx.reply(operationNotFound);
 			break;
 	}
 };

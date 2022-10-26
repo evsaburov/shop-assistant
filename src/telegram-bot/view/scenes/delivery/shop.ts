@@ -1,15 +1,10 @@
 import { Shop } from '@prisma/client';
 
-export function shopNotFound(): string {
-	return 'Магазин не распознан, попробуйте выбрать еще раз';
-}
+export const shopNotFound = '😞 Магазин не распознан, попробуйте выбрать еще раз';
+export const selectShop = '🏬 Выберете магазин в вашем городе';
 
 export function isShopSelect(respondUser: string): string {
-	return `Ваш магазин доставки ${respondUser}`;
-}
-
-export function selectShop(): string {
-	return 'Выберете магазин в вашем городе';
+	return `🏬 Ваш магазин доставки ${respondUser}`;
 }
 
 export function shopsList(shops: Shop[]): string[] {

@@ -48,7 +48,7 @@ const shoes = [
 	},
 ];
 
-const shipment = [
+const store = [
 	{
 		id: 1,
 		size: 34,
@@ -56,37 +56,63 @@ const shipment = [
 		amount: 10,
 		price: 3000,
 		description:
-			'Shaft measures approximately low-top from arch, Proprietary stitchlite knit upper with crafted woven leather overlay details, Lateral and medial leather overlay pieces that are integrated into the lacing system ,provides customized support, Eva midsole for comfort, cushioning and flexibility.',
+			'Shaft measures approximately low-top from arch, Proprietary stitchlite knit upper with crafted woven leather overlay details',
 		catalogId: 1,
 	},
 	{
 		id: 2,
+		size: 37,
+		color: 'Green',
+		amount: 12,
+		price: 3300,
+		description:
+			'Shaft measures approximately low-top from arch, Proprietary stitchlite knit upper with.',
+		catalogId: 1,
+	},
+	{
+		id: 3,
 		size: 33,
 		color: 'White',
 		amount: 20,
 		price: 6000,
 		description:
-			'Shaft measures approximately low-top from arch, Proprietary stitchlite knit upper with crafted woven leather overlay details, Lateral and medial leather overlay pieces that are integrated into the lacing system ,provides customized support, Eva midsole for comfort, cushioning and flexibility.',
+			'Shaft measures approximately low-top from arch, Proprietary stitchlite knit upper with crafted. ',
 		catalogId: 2,
 	},
 	{
-		id: 3,
+		id: 4,
 		size: 28,
 		color: 'Magnet',
 		amount: 12,
 		price: 4600,
-		description:
-			'Shaft measures approximately low-top from arch, Proprietary stitchlite knit upper with crafted woven leather overlay details, Lateral and medial leather overlay pieces that are integrated into the lacing system ,provides customized support, Eva midsole for comfort, cushioning and flexibility.',
+		description: 'Shaft measures approximately low-top from arch.',
 		catalogId: 3,
 	},
 	{
-		id: 4,
+		id: 5,
 		size: 16,
 		color: 'Black',
 		amount: 40,
 		price: 4500,
-		description:
-			'Shaft measures approximately low-top from arch, Proprietary stitchlite knit upper with crafted woven leather overlay details, Lateral and medial leather overlay pieces that are integrated into the lacing system ,provides customized support, Eva midsole for comfort, cushioning and flexibility.',
+		description: 'Shaft measures approximately low-top from arch.',
+		catalogId: 4,
+	},
+	{
+		id: 6,
+		size: 17,
+		color: 'Red',
+		amount: 12,
+		price: 4700,
+		description: 'Shaft measures approximately low-top from arch, Proprietary stitchlite... ',
+		catalogId: 4,
+	},
+	{
+		id: 7,
+		size: 18,
+		color: 'White',
+		amount: 4,
+		price: 4800,
+		description: 'Shaft measures approximately low-top from arch.',
 		catalogId: 4,
 	},
 ];
@@ -94,14 +120,6 @@ const shipment = [
 async function main(): Promise<void> {
 	prisma.$connect();
 	console.log(`Start seeding ...`);
-
-	//create  test users
-	const upsertUser = await prisma.user.upsert({
-		where: { id: 1 },
-		create: { id: 1 },
-		update: {},
-	});
-	console.log(`Upsert user with id: ${upsertUser.id}`);
 
 	// create shops
 	for (const shop of shops) {
@@ -121,18 +139,15 @@ async function main(): Promise<void> {
 		});
 		console.log(`Upsert shoes with id: ${shoesUpsert.id}`);
 	}
-	// create shipment
-	for (const one of shipment) {
-		const shipmentUpsert = await prisma.shipment.upsert({
+	// create store
+	for (const one of store) {
+		const storeUpsert = await prisma.store.upsert({
 			where: { id: one.id },
 			update: {},
 			create: one,
 		});
-		console.log(`Upsert shipment with id: ${shipmentUpsert.id}`);
+		console.log(`Upsert store with id: ${storeUpsert.id}`);
 	}
-
-	//create catalog
-
 	console.log(`Seeding finished.`);
 }
 

@@ -53,14 +53,14 @@ model Shop {
 }
 
 model Catalog {
-  id      Int        @id @default(autoincrement())
+  id      Int     @id @default(autoincrement())
   name    String
   link    String
   images  String
-  Options Shipment[]
+  Options Store[]
 }
 
-model Shipment {
+model Store {
   id          Int      @id @default(autoincrement())
   size        Int
   color       String
