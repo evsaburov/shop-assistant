@@ -59,10 +59,10 @@ export const actionSendItemCatalog = async (ctx: MyContext, itemCode: string): P
 	);
 };
 
-export const actionAddForCart = async (ctx: MyContext, itemName: string): Promise<void> => {
+export const actionAddForCart = async (ctx: MyContext, code: string): Promise<void> => {
 	ctx.answerCbQuery();
 
-	const itemsInStore = await itemsInStoreByCode(itemName);
+	const itemsInStore = await itemsInStoreByCode(code);
 	if (itemsInStore === null) {
 		ctx.replyWithPhoto(messageItemNotFound);
 		return;
@@ -73,10 +73,10 @@ export const actionAddForCart = async (ctx: MyContext, itemName: string): Promis
 	});
 };
 
-export const actionAddToCart = async (ctx: MyContext, storeItem: string): Promise<void> => {
+export const actionAddToCart = async (ctx: MyContext, code: string): Promise<void> => {
 	ctx.answerCbQuery();
 
-	const numberItemInStore = parseInt(storeItem.split('-')[1]);
+	const numberItemInStore = parseInt(code.split('-')[1]);
 
 	const itemsInStore = await getItemStoreById(numberItemInStore);
 	if (itemsInStore === null) {
