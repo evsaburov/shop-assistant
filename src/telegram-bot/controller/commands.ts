@@ -19,7 +19,11 @@ import { actionSendItemCatalog } from './action';
 
 export async function start(ctx: MyContext): Promise<void> {
 	ctx.reply(hello(ctx.session.name), mainKeyboard);
-	!ctx.session.city && !ctx.session.shop ? ctx.scene.enter(Scene.CITY) : catalog(ctx);
+	if (!ctx.session.city && !ctx.session.shop) {
+		ctx.scene.enter(Scene.CITY);
+	} else {
+		catalog(ctx);
+	}
 }
 
 export async function catalog(ctx: MyContext): Promise<void> {
@@ -45,9 +49,7 @@ export const cart = async (ctx: MyContext): Promise<void> => {
 	for (const item of cart) {
 		await ctx.replyWithHTML(itemDescription(item), deleteFromCartKeyboard(item.shipmentId));
 	}
-
-	const mapPrice = cart.map((el) => el.price);
-	const totalPrice = mapPrice.reduce((acc, curVal): number => acc + curVal);
+	const totalPrice = cart.reduce((acc, curVal): number => acc + curVal.price, 0);
 	ctx.reply(`🛒 Всего к отплате: ${totalPrice} р.`, payItemToCartKeyboard);
 };
 
