@@ -1,0 +1,22 @@
+import { Markup, Scenes } from 'telegraf';
+import { MyContext } from '../../telegram-bot-interface';
+import { removeKeyboard, exitKeyboard } from '../../keyboards/keyboards';
+import { Scene } from '../types';
+
+export const phoneScene = new Scenes.BaseScene<MyContext>(Scene.PHONE);
+
+phoneScene.enter(async (ctx) => {
+	ctx.reply('Укажите номер телефона в формате +7XXXXXXXXXX', exitKeyboard);
+});
+
+phoneScene.on('text', (ctx) => {
+	const respondUser = ctx.message.text;
+	const regExp = /^(\+7)([\d]{10})$/;
+	if (regExp.test(respondUser)) {
+		ctx.session.cardPhone = respondUser;
+		ctx.reply('Номер телефона принят', removeKeyboard);
+		ctx.scene.enter('email');
+	} else {
+		ctx.reply('Номер телефона не соответствует формату, попробуйте еще раз...', exitKeyboard);
+	}
+});

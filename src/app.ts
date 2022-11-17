@@ -1,5 +1,5 @@
 import { ILogger } from './logger/logger.interface';
-import { IBotTelegram } from './telegram-bot/telegram-bot.interface';
+import { IBotTelegram } from './telegram-bot/telegram-bot-interface';
 
 export class App {
 	logger: ILogger;
